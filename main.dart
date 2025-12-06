@@ -42,19 +42,49 @@ void main(){
             print('Student added successfully!');
             break;
 
-            case '2':
-            // show student
-
-            if (students.isEmpty){
-                print("No student found.");
-
-            }
-            else{
-                for (var student in Students){
-                    print(student);
-                }
-            }
+           case '2':
+        // Show Students
+        if (students.isEmpty) {
+          print('No students found.');
+        } else {
+          for (var student in students) {
+            print(student);
+          }
+        }
             break;
+            case '3':
+        // Update Student
+        print('Enter Student ID to update: ');
+        int id = int.parse(stdin.readLineSync() ?? '0');
+        var student = students.firstWhere((s) => s.id == id, orElse: () => Student(id: 0, name: '', age: 0, grade: ''));
+        if (student.id == 0) {
+          print('Student not found!');
+        } else {
+          print('New Name (${student.name}): ');
+          String name = stdin.readLineSync() ?? student.name;
+          print('New Age (${student.age}): ');
+          int age = int.parse(stdin.readLineSync() ?? student.age.toString());
+          print('New Grade (${student.grade}): ');
+          String grade = stdin.readLineSync() ?? student.grade;
+          student.name = name.isNotEmpty ? name : student.name;
+          student.age = age;
+          student.grade = grade.isNotEmpty ? grade : student.grade;
+          print('Student updated successfully!');
+        }
+        break;
+
+         case '4':
+        // Delete Student
+        print('Enter Student ID to delete: ');
+        int id = int.parse(stdin.readLineSync() ?? '0');
+        students.removeWhere((s) => s.id == id);
+        print('Student deleted successfully (if ID existed).');
+        break;
+      case '5':
+        print('Exiting...');
+        return;
+      default:
+        print('Invalid option. Try again.');
         }
     }
 }
