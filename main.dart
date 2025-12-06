@@ -41,6 +41,20 @@ void main(){
             students.add(Student(id: newId++, name: name, age: age, grade: grade));
             print('Student added successfully!');
             break;
+
+            case '2':
+            // show student
+
+            if (students.isEmpty){
+                print("No student found.");
+
+            }
+            else{
+                for (var student in Students){
+                    print(student);
+                }
+            }
+            break;
         }
     }
-}git
+}
